@@ -1,0 +1,1 @@
+export {default as ProductCardLoader} from './ProductCardLoader';

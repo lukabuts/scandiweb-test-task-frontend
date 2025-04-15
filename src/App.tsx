@@ -3,15 +3,19 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Header, Loading } from "@/components";
 import { ProductListPage } from "@/pages";
 import { useCategoryStore } from "@/stores";
+import { ErrorCard } from "@/components/ui";
 
 function App() {
   const { fetchCategories, loading, error } = useCategoryStore();
   useEffect(() => {
     fetchCategories();
-  }, []);
+  }, [fetchCategories]);
 
   if (loading) return <Loading />;
-  if (error) return <div>Error: {error}</div>;
+  if (error)
+    return (
+      <ErrorCard className="mx-auto w-fit mt-10">Error: {error}</ErrorCard>
+    );
   return (
     <Router>
       <Header />
