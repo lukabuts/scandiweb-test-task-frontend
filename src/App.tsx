@@ -1,9 +1,8 @@
 import { Suspense, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Header, Loading } from "@/components";
-import { ProductListPage } from "@/pages";
+import { NotFound, ProductListPage, ServerError } from "@/pages";
 import { useCategoryStore } from "@/stores";
-import { ErrorCard } from "@/components/ui";
 
 function App() {
   const { fetchCategories, loading, error } = useCategoryStore();
@@ -12,10 +11,7 @@ function App() {
   }, [fetchCategories]);
 
   if (loading) return <Loading />;
-  if (error)
-    return (
-      <ErrorCard className="mx-auto w-fit mt-10">Error: {error}</ErrorCard>
-    );
+  if (error) return <ServerError />;
   return (
     <Router>
       <Header />
@@ -23,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<ProductListPage />} />
           <Route path="/:category" element={<ProductListPage />} />
-          <Route path="*" element={<div>404 Not Found</div>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </Router>
