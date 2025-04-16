@@ -1,0 +1,1 @@
+export {default as ProductImageSwiper} from "./ProductImageSwiper";

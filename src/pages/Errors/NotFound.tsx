@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
-    <section className="flex items-center h-screen p-16 fixed top-0 left-0 w-full">
+    <div className="flex items-center justify-center h-screen p-16 fixed top-0 left-0 w-full">
       <div className="container flex flex-col items-center">
-        <div className="flex flex-col gap-6 max-w-md text-center">
+        <div className="flex flex-col gap-6 text-center">
           <h2 className="font-extrabold text-9xl text-gray-600">
             <span className="sr-only">Error</span>404
           </h2>
-          <p className="text-2xl md:text-3xl">
+          <p className="text-2xl md:text-3xl font-raleway">
             Sorry, we couldn't find this page.
           </p>
           <Link
@@ -20,7 +20,7 @@ const NotFound = () => {
           </Link>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

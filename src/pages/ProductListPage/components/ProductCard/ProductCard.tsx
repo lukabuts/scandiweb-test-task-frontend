@@ -25,7 +25,7 @@ const ProductCard = ({ product }: { product: Product }) => {
             className="w-full h-48 object-contain rounded-xl"
           />
           {in_stock ? (
-            <button className="bg-green-primary p-3 rounded-full absolute -bottom-7 right-4 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+            <button className="bg-green-primary p-3 rounded-full absolute -bottom-7 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
               <ShoppingCart className="text-white size-5" />
             </button>
           ) : (
