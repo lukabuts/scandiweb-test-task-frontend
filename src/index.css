@@ -53,7 +53,7 @@
   }
 
   .body-container {
-    @apply sm:mb-4 mb:10;
+    @apply sm:mb-4 mb-10;
   }
 
   .products-container {
