@@ -40,12 +40,25 @@
   --color-green-primary: #5ECE7B;
   --color-gray-neutral: #8D8F9A;
   --color-black-primary: #1D1F22;
+  --spacing-product-card: 350px;
+  --default-transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --default-transition-duration: 0.3s;
   --font-raleway: "Raleway", sans-serif;
+  --default-font-family: "Raleway", sans-serif;
 }
 
 @layer {
   .wrapper-container {
     @apply px-4 sm:px-12 lg:px-28 max-w-[2300px] mx-auto;
+  }
+
+  .body-container {
+    @apply sm:mb-4 mb:10;
+  }
+
+  .products-container {
+    @apply grid justify-around gap-x-10 gap-y-20;
+    grid-template-columns: repeat(auto-fill, 350px);
   }
   button{
     cursor: pointer;

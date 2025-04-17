@@ -18,7 +18,7 @@ const ProductDetailPage = () => {
   if (error) return <div className="text-red-500">{error}</div>;
   if (!product) return <div>Product not found</div>;
   return (
-    <div className="wrapper-container flex lg:gap-28 gap-5 max-lg:flex-col font-raleway mb-10">
+    <div className="wrapper-container body-container flex lg:gap-28 gap-5 max-lg:flex-col ">
       <ProductImageSwiper images={product.gallery ?? []} />
 
       <div className="flex-3 flex flex-col lg:gap-6 gap-3">
