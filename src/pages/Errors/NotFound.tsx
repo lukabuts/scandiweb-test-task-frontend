@@ -9,7 +9,7 @@ const NotFound = () => {
           <h2 className="font-extrabold text-9xl text-gray-600">
             <span className="sr-only">Error</span>404
           </h2>
-          <p className="text-2xl md:text-3xl font-raleway">
+          <p className="text-2xl md:text-3xl">
             Sorry, we couldn't find this page.
           </p>
           <Link

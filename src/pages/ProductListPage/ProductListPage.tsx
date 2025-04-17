@@ -32,15 +32,11 @@ const ProductListPage = () => {
   }
 
   return (
-    <div className="wrapper-container mb-10">
+    <div className="wrapper-container body-container">
       <h1 className="text-2xl font-raleway font-medium mb-6 capitalize">
         {category || "all"}
       </h1>
-      <div
-        className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ${
-          loading ? "opacity-50" : ""
-        }`}
-      >
+      <div className={`products-container ${loading ? "opacity-50" : ""}`}>
         {loading && products.length === 0 ? (
           Array.from({ length: 8 }).map((_, index) => (
             <ProductCardLoader key={index} />
