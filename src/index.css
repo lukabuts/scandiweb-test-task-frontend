@@ -38,9 +38,12 @@
 
 @theme{
   --color-green-primary: #5ECE7B;
+  --color-cart-overlay-background: rgba(57 ,55, 72, 0.22);
   --color-gray-neutral: #8D8F9A;
   --color-black-primary: #1D1F22;
   --spacing-product-card: 350px;
+  --spacing-cart-content-height: 320px;
+  --spacing-detailed-image-height: 550px;
   --default-transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
   --default-transition-duration: 0.3s;
   --font-raleway: "Raleway", sans-serif;
@@ -60,6 +63,15 @@
     @apply grid justify-around gap-x-10 gap-y-20;
     grid-template-columns: repeat(auto-fill, 350px);
   }
+
+  .action-button{
+    @apply bg-green-primary w-full uppercase text-white font-sans font-semibold hover:bg-green-500 transition-colors;
+  }
+  
+  .primary-black-btn-hover{
+    @apply hover:bg-black-primary hover:text-white transition-colors;
+  }
+
   button{
     cursor: pointer;
   }

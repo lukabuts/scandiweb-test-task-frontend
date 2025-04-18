@@ -1,7 +1,6 @@
 import logo from "@/assets/images/logo.png";
-import { useCategoryStore } from "@/stores/useCategoryStore";
-import { ShoppingCart } from "lucide-react";
-import { NavLinkCard } from "./components";
+import { useCategoryStore } from "@/stores";
+import { NavLinkCard, ShoppingCart } from "./components";
 import { useEffect, useState } from "react";
 
 const Header = () => {
@@ -34,9 +33,7 @@ const Header = () => {
         <div className="max-sm:hidden">
           <img src={logo} alt="Logo" className="size-10" />
         </div>
-        <button data-testid="cart-btn" className="cursor-pointer">
-          <ShoppingCart />
-        </button>
+        <ShoppingCart />
       </div>
     </header>
   );
