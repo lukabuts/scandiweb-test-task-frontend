@@ -26,7 +26,7 @@ const ProductImageSwiper = ({ images }: { images: string[] }) => {
         <img
           src={images[activeImage]}
           alt="Product Image"
-          className="max-h-[550px] h-full w-full max-w-xl object-contain"
+          className="sm:h-detailed-image-height h-96 w-full max-w-xl object-contain object-center"
         />
         {images.length > 1 && (
           <div className="absolute top-1/2 left-0 right-0 flex justify-between items-center opacity-0 group-hover:opacity-100 transition-opacity">

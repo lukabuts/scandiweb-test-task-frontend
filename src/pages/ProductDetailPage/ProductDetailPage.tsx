@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useProductDetailStore } from "@/stores/useProductDetailStore";
+import { useProductDetailStore } from "@/stores";
 import { Attributes, ProductImageSwiper, Subtitle } from "./components";
 import { Loading } from "@/components";
 import { Interweave } from "interweave";
@@ -31,17 +31,15 @@ const ProductDetailPage = () => {
             {product.prices[0].amount.toFixed(2)}
           </p>
         </div>
-        <button
-          data-testid="add-to-cart"
-          className="bg-green-primary uppercase text-white font-sans p-4 font-semibold hover:bg-green-500 transition-colors"
-        >
+        <button data-testid="add-to-cart" className="action-button p-4">
           {product.in_stock ? "Add to Cart" : "Out of Stock"}
         </button>
-        <Interweave
-          data-testid="product-description"
-          content={product.description}
-          className="text-black-primary prose"
-        />
+        <div data-testid="product-description">
+          <Interweave
+            content={product.description}
+            className="text-black-primary prose"
+          />
+        </div>
       </div>
     </div>
   );

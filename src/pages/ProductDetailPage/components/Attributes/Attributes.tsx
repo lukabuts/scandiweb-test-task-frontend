@@ -14,7 +14,7 @@ const Attributes = ({ attributes }: { attributes: Attribute[] }) => {
           return attribute.type.name === "text" ? (
             <label
               key={item.id}
-              className="px-4 py-1 border border-black-primary font-sans bg-white hover:bg-black-primary hover:text-white transition-colors cursor-pointer"
+              className="px-4 py-1 border border-black-primary font-sans bg-white primary-black-btn-hover cursor-pointer"
             >
               <input
                 type="radio"
