@@ -36,11 +36,11 @@
   font-style: normal;
 }
 
-@theme{
-  --color-green-primary: #5ECE7B;
-  --color-cart-overlay-background: rgba(57 ,55, 72, 0.22);
-  --color-gray-neutral: #8D8F9A;
-  --color-black-primary: #1D1F22;
+@theme {
+  --color-green-primary: #5ece7b;
+  --color-cart-overlay-background: rgba(57, 55, 72, 0.22);
+  --color-gray-neutral: #8d8f9a;
+  --color-black-primary: #1d1f22;
   --spacing-product-card: 350px;
   --spacing-cart-content-height: 320px;
   --spacing-detailed-image-height: 550px;
@@ -48,6 +48,10 @@
   --default-transition-duration: 0.3s;
   --font-raleway: "Raleway", sans-serif;
   --default-font-family: "Raleway", sans-serif;
+  --default-font-size: 16px;
+  --animate-widthnone: widthnone 3s linear;
+  --animate-slideInFromRight: slideInFromRight 3.1s ease-out;
+  --animate-popUp: popUp 3.1s ease-out;
 }
 
 @layer {
@@ -64,15 +68,54 @@
     grid-template-columns: repeat(auto-fill, 350px);
   }
 
-  .action-button{
+  .action-button {
     @apply bg-green-primary w-full uppercase text-white font-sans font-semibold hover:bg-green-500 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed;
   }
-  
-  .primary-black-btn-hover{
+
+  .primary-black-btn-hover {
     @apply hover:bg-black-primary hover:text-white transition-colors;
   }
 
-  button{
+  button {
     cursor: pointer;
+  }
+
+  @keyframes widthnone {
+    0% {
+      width: 100%;
+    }
+    100% {
+      width: 0%;
+    }
+  }
+
+  @keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%);
+    }
+    3% {
+      transform: translateX(0);
+    }
+    97% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes popUp {
+    0% {
+      transform: translateY(100%);
+    }
+    3% {
+      transform: translateY(0);
+    }
+    97% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(100%);
+    }
   }
 }

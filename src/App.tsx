@@ -1,6 +1,6 @@
 import { Suspense, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Header, Loading, ScrollToTop } from "@/components";
+import { Header, Loading, NotificationCard, ScrollToTop } from "@/components";
 import {
   NotFound,
   ProductListPage,
@@ -20,6 +20,7 @@ function App() {
   return (
     <Router>
       <Header />
+      <NotificationCard />
       <ScrollToTop />
       <Suspense fallback={<Loading />}>
         <Routes>
