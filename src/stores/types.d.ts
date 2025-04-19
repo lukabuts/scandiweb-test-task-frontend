@@ -47,10 +47,10 @@ interface ProductDetailStore {
   fetchProductDetail: (id: string) => Promise<void>;
 }
 
-
 interface ProductStore {
   products: Product[];
   loading: boolean;
   error: string | null;
   fetchProducts: (category: string) => Promise<void>;
 }
+
