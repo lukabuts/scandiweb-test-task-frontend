@@ -1,15 +1,6 @@
 import { create } from "zustand";
 import { apolloClient } from "@/apollo";
-import { GET_CATEGORIES } from "@/graphql/queries";
-import { Category } from "@/types";
-
-interface CategoryStore {
-  categories: Category[];
-  fetched: boolean;
-  loading: boolean;
-  error: string | null;
-  fetchCategories: () => Promise<void>;
-}
+import { GET_CATEGORIES } from "@/graphql";
 
 export const useCategoryStore = create<CategoryStore>((set, get) => ({
   categories: [],

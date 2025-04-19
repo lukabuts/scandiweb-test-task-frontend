@@ -7,6 +7,18 @@ export const GET_PRODUCTS_BY_CATEGORY = gql`
       name
       in_stock
       gallery
+      attributes {
+        id
+        name
+        type {
+          name
+        }
+        items {
+          id
+          value
+          display_value
+        }
+      }
       prices {
         amount
         currency {

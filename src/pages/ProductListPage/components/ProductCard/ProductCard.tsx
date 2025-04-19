@@ -1,14 +1,34 @@
 import { routes } from "@/routes";
+import { useCartStore } from "@/stores";
 import { Product } from "@/types";
-import { toKebabCase } from "@/utils";
+import {
+  addDefaultAttribute,
+  generateDefaultCartProductId,
+  toKebabCase,
+} from "@/utils";
 import { ShoppingCart } from "lucide-react";
 import { memo } from "react";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }: { product: Product }) => {
-  const { id, name, in_stock, prices, gallery } = product;
+  const { id, name, in_stock, prices, gallery, attributes } = product;
+  const { addProduct } = useCartStore();
   const price = prices[0];
   const image = gallery[0];
+
+  function handleAddToCart(e: React.MouseEvent) {
+    e.preventDefault();
+
+    addProduct({
+      id: generateDefaultCartProductId(product),
+      productId: id,
+      name,
+      price: price.amount,
+      currency: price.currency.symbol,
+      attributes: addDefaultAttribute(attributes),
+      image,
+    });
+  }
 
   return (
     <Link
@@ -24,7 +44,10 @@ const ProductCard = ({ product }: { product: Product }) => {
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform"
         />
         {in_stock ? (
-          <button className="bg-green-primary p-3 rounded-full absolute -bottom-6 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+          <button
+            onClick={handleAddToCart}
+            className="bg-green-primary p-3 rounded-full absolute -bottom-6 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
+          >
             <ShoppingCart className="text-white size-5" />
           </button>
         ) : (

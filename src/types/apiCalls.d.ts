@@ -36,6 +36,7 @@ export interface Product {
   in_stock: boolean;
   gallery: string[];
   prices: Price[];
+  attributes: Attribute[];
 }
 
 // Detailed product (extends Product)
@@ -44,5 +45,4 @@ export type ProductDetail = Product & {
   brand: {
     name: string;
   };
-  attributes: Attribute[];
 };

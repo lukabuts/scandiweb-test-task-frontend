@@ -1,0 +1,1 @@
+export type SelectedProductAttribute = { attribute_id: number; item_id: string }

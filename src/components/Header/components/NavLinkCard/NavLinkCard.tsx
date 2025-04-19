@@ -12,7 +12,7 @@ const NavLinkCard = ({ category }: { category: Category }) => {
   return (
     <li
       key={id}
-      className={`lg:h-16 sm:h-11 flex items-center relative uppercase px-2 ${
+      className={`sm:h-16 h-14 flex items-center relative uppercase px-2 ${
         isActive ? "text-green-primary" : ""
       }`}
     >

@@ -1,8 +1,48 @@
 import { Attribute } from "@/types";
 import { Subtitle } from "../Subtitle";
 import { toKebabCase } from "@/utils";
+import { SelectedProductAttribute } from "../../types";
 
-const Attributes = ({ attributes }: { attributes: Attribute[] }) => {
+const Attributes = ({
+  attributes,
+  selectedAttributes,
+  setSelectedAttributes,
+}: {
+  attributes: Attribute[];
+  selectedAttributes: SelectedProductAttribute[];
+  setSelectedAttributes: React.Dispatch<
+    React.SetStateAction<SelectedProductAttribute[]>
+  >;
+}) => {
+  const handleAttributeChange = (
+    attribute: Attribute,
+    item: Attribute["items"][number]
+  ) => {
+    setSelectedAttributes((prev) => {
+      const existingAttribute = prev.find(
+        (attr) => attr.attribute_id === attribute.id
+      );
+      if (existingAttribute) {
+        return prev.map((attr) =>
+          attr.attribute_id === attribute.id
+            ? { ...attr, item_id: item.id }
+            : attr
+        );
+      } else {
+        return [...prev, { attribute_id: attribute.id, item_id: item.id }];
+      }
+    });
+  };
+
+  const isAttributeSelected = (
+    attribute: Attribute,
+    item: Attribute["items"][number]
+  ) => {
+    return selectedAttributes.some(
+      (attr) => attr.attribute_id === attribute.id && attr.item_id === item.id
+    );
+  };
+
   return attributes.map((attribute) => (
     <div
       key={attribute.id}
@@ -14,20 +54,29 @@ const Attributes = ({ attributes }: { attributes: Attribute[] }) => {
           return attribute.type.name === "text" ? (
             <label
               key={item.id}
-              className="px-4 py-1 border border-black-primary font-sans bg-white primary-black-btn-hover cursor-pointer"
+              className={`px-4 py-1 border-black-primary border font-sans primary-black-btn-hover cursor-pointer ${
+                isAttributeSelected(attribute, item)
+                  ? "bg-black-primary text-white"
+                  : "bg-white"
+              }`}
             >
               <input
                 type="radio"
                 name={attribute.name}
                 value={item.value}
                 className="hidden"
+                onClick={() => handleAttributeChange(attribute, item)}
               />
-              {item.display_value}
+              {item.value}
             </label>
           ) : (
             <label
               key={item.id}
-              className="size-8 ring ring-green-primary cursor-pointer"
+              className={`size-8 cursor-pointer ${
+                isAttributeSelected(attribute, item)
+                  ? "border-2 border-green-primary"
+                  : ""
+              }`}
               style={{
                 backgroundColor: item.value,
               }}
@@ -37,6 +86,7 @@ const Attributes = ({ attributes }: { attributes: Attribute[] }) => {
                 name={attribute.name}
                 value={item.value}
                 className="hidden"
+                onChange={() => handleAttributeChange(attribute, item)}
               />
             </label>
           );

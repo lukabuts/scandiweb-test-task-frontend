@@ -1,14 +1,6 @@
 import { create } from "zustand";
 import { apolloClient } from "@/apollo";
-import { GET_PRODUCTS_BY_CATEGORY } from "@/graphql/queries";
-import { Product } from "@/types";
-
-interface ProductStore {
-  products: Product[];
-  loading: boolean;
-  error: string | null;
-  fetchProducts: (category: string) => Promise<void>;
-}
+import { GET_PRODUCTS_BY_CATEGORY } from "@/graphql";
 
 export const useProductStore = create<ProductStore>((set) => ({
   products: [],
