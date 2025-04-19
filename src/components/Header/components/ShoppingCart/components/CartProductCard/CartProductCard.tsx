@@ -1,4 +1,5 @@
 import { useCartStore } from "@/stores";
+import { toKebabCase } from "@/utils";
 import { MinusIcon, PlusIcon } from "lucide-react";
 
 const CartProductCard = ({ product }: { product: CartProduct }) => {
@@ -12,7 +13,11 @@ const CartProductCard = ({ product }: { product: CartProduct }) => {
         </p>
         {product.attributes.length > 0 &&
           product.attributes.map((attribute) => (
-            <div className="space-y-2" key={attribute.id}>
+            <div
+              className="space-y-2"
+              key={attribute.id}
+              data-testid={`cart-item-attribute-${toKebabCase(attribute.name)}`}
+            >
               <p className="text-sm capitalize">{attribute.name}</p>
               <div className="flex gap-2 overflow-x-auto">
                 {attribute.items.map((item) =>
@@ -23,6 +28,11 @@ const CartProductCard = ({ product }: { product: CartProduct }) => {
                         item.selected
                           ? "bg-black-primary text-white"
                           : "border border-black-primary"
+                      }`}
+                      data-testid={`cart-item-attribute-${toKebabCase(
+                        attribute.name
+                      )}-${toKebabCase(item.value)}${
+                        item.selected ? "-selected" : ""
                       }`}
                     >
                       {item.value}
@@ -36,6 +46,11 @@ const CartProductCard = ({ product }: { product: CartProduct }) => {
                       className={`size-4 ${
                         item.selected ? "border border-green-primary" : ""
                       } `}
+                      data-testid={`cart-item-attribute-${toKebabCase(
+                        attribute.name
+                      )}-${toKebabCase(item.value)}${
+                        item.selected ? "-selected" : ""
+                      }`}
                     ></span>
                   )
                 )}
@@ -44,13 +59,19 @@ const CartProductCard = ({ product }: { product: CartProduct }) => {
           ))}
       </div>
       <div className="w-6 flex  flex-col justify-between items-center">
-        <button onClick={() => increaseQuantity(product.id)}>
+        <button
+          onClick={() => increaseQuantity(product.id)}
+          data-testid="cart-item-amount-increase"
+        >
           <PlusIcon className="border border-black-primary p-1 primary-black-btn-hover" />
         </button>
-        <div className="text-center">
+        <div className="text-center" data-testid="cart-item-amount">
           <p>{product.quantity}</p>
         </div>
-        <button onClick={() => decreaseQuantity(product.id)}>
+        <button
+          onClick={() => decreaseQuantity(product.id)}
+          data-testid="cart-item-amount-decrease"
+        >
           <MinusIcon className="border border-black-primary p-1 primary-black-btn-hover" />
         </button>
       </div>
