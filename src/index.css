@@ -65,7 +65,7 @@
   }
 
   .action-button{
-    @apply bg-green-primary w-full uppercase text-white font-sans font-semibold hover:bg-green-500 transition-colors;
+    @apply bg-green-primary w-full uppercase text-white font-sans font-semibold hover:bg-green-500 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed;
   }
   
   .primary-black-btn-hover{

@@ -1,14 +1,6 @@
 import { create } from "zustand";
 import { apolloClient } from "@/apollo";
-import { GET_PRODUCT_DETAIL } from "@/graphql/queries";
-import { ProductDetail } from "@/types";
-
-interface ProductDetailStore {
-  product: ProductDetail | null;
-  loading: boolean;
-  error: string | null;
-  fetchProductDetail: (id: string) => Promise<void>;
-}
+import { GET_PRODUCT_DETAIL } from "@/graphql";
 
 export const useProductDetailStore = create<ProductDetailStore>((set) => ({
   product: null,
