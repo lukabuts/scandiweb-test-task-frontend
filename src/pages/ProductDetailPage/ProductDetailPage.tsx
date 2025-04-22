@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useCartStore, useProductDetailStore } from "@/stores";
 import { Attributes, ProductImageSwiper, Subtitle } from "./components";
-import { Loading } from "@/components";
+import { Loading, SEO } from "@/components";
 import { Interweave } from "interweave";
 import { SelectedProductAttribute } from "./types";
 import { addSelectedAttribute, generateCartProductId } from "@/utils";
+import striptags from "striptags";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -38,44 +39,52 @@ const ProductDetailPage = () => {
     });
     openCart();
   }
-
+  console.log("ProductDetailPage product: ", product);
   return (
-    <div className="wrapper-container body-container flex lg:gap-28 gap-5 max-lg:flex-col ">
-      <ProductImageSwiper images={product.gallery ?? []} />
+    <>
+      <SEO
+        title={product.name}
+        description={striptags(product.description)}
+        image={product.gallery[0]}
+        type="product"
+      />
+      <div className="wrapper-container body-container flex lg:gap-28 gap-5 max-lg:flex-col ">
+        <ProductImageSwiper images={product.gallery ?? []} />
 
-      <div className="flex-3 flex flex-col lg:gap-6 gap-3">
-        <h1 className="text-3xl font-semibold">{product.name}</h1>
-        <Attributes
-          attributes={product.attributes}
-          selectedAttributes={selectedAttributes}
-          setSelectedAttributes={setSelectedAttributes}
-        />
-        <div>
-          <Subtitle>Price:</Subtitle>
-          <p className="font-bold text-2xl">
-            {product.prices[0].currency.symbol}
-            {product.prices[0].amount.toFixed(2)}
-          </p>
-        </div>
-        <button
-          data-testid="add-to-cart"
-          className="action-button p-4"
-          disabled={
-            !product.in_stock ||
-            selectedAttributes.length !== product.attributes.length
-          }
-          onClick={handleAddToCart}
-        >
-          {product.in_stock ? "Add to Cart" : "Out of Stock"}
-        </button>
-        <div data-testid="product-description">
-          <Interweave
-            content={product.description}
-            className="text-black-primary prose"
+        <div className="flex-3 flex flex-col lg:gap-6 gap-3">
+          <h1 className="text-3xl font-semibold">{product.name}</h1>
+          <Attributes
+            attributes={product.attributes}
+            selectedAttributes={selectedAttributes}
+            setSelectedAttributes={setSelectedAttributes}
           />
+          <div>
+            <Subtitle>Price:</Subtitle>
+            <p className="font-bold text-2xl">
+              {product.prices[0].currency.symbol}
+              {product.prices[0].amount.toFixed(2)}
+            </p>
+          </div>
+          <button
+            data-testid="add-to-cart"
+            className="action-button p-4"
+            disabled={
+              !product.in_stock ||
+              selectedAttributes.length !== product.attributes.length
+            }
+            onClick={handleAddToCart}
+          >
+            {product.in_stock ? "Add to Cart" : "Out of Stock"}
+          </button>
+          <div data-testid="product-description">
+            <Interweave
+              content={product.description}
+              className="text-black-primary prose"
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
