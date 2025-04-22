@@ -7,6 +7,8 @@ import { Interweave } from "interweave";
 import { SelectedProductAttribute } from "./types";
 import { addSelectedAttribute, generateCartProductId } from "@/utils";
 import striptags from "striptags";
+import { NotFound } from "../Errors";
+import { ErrorCard } from "@/components/ui";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -22,8 +24,9 @@ const ProductDetailPage = () => {
   }, [id, fetchProductDetail]);
 
   if (loading) return <Loading />;
-  if (error) return <div className="text-red-500">{error}</div>;
-  if (!product) return <div>Product not found</div>;
+  if (error)
+    return <ErrorCard className="wrapper-container">{error}</ErrorCard>;
+  if (!product) return <NotFound message="Product not found" />;
 
   function handleAddToCart() {
     if (!product.in_stock) return;

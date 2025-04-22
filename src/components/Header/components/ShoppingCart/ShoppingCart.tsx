@@ -70,11 +70,14 @@ const ShoppingCart = () => {
               <p className="capitalize">total</p>
               <p className="font-bold" data-testid="cart-total">
                 ${" "}
-                {products
-                  .reduce((acc, product) => {
+                {Intl.NumberFormat("en-US", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                }).format(
+                  products.reduce((acc, product) => {
                     return acc + product.price * product.quantity;
                   }, 0)
-                  .toFixed(2)}
+                )}
               </p>
             </div>
             <PlaceOrderButton cartItems={products} />

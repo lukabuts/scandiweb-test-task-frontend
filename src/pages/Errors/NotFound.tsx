@@ -2,7 +2,7 @@ import { SEO } from "@/components";
 import { routes } from "@/routes";
 import { Link } from "react-router-dom";
 
-const NotFound = () => {
+const NotFound = ({ message }: { message?: string }) => {
   return (
     <>
       <SEO
@@ -17,7 +17,7 @@ const NotFound = () => {
               <span className="sr-only">Error</span>404
             </h2>
             <p className="text-2xl md:text-3xl">
-              Sorry, we couldn't find this page.
+              {message || "Sorry, we couldn't find this page."}
             </p>
             <Link
               to={routes.home}

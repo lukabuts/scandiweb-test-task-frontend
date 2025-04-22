@@ -3,7 +3,6 @@ import { Attribute, Product } from "@/types";
 
 export const generateDefaultCartProductId = (product: Product): string => {
   let productId = product.id;
-  console.log(product)
   product.attributes.forEach((attribute) => {
     productId += "-" + attribute.id + "-" + attribute.items[0].id;
   });
