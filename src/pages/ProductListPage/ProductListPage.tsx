@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { ProductCard, ProductCardLoader } from "./components";
 import { ErrorCard, InfoCard } from "@/components/ui";
 import { SEO } from "@/components";
+import { NotFound } from "../Errors";
 
 const ProductListPage = () => {
   const { category } = useParams();
@@ -17,11 +18,7 @@ const ProductListPage = () => {
   const categoryExists = categories.some((cat) => cat.name === category);
 
   if (!categoryExists && category) {
-    return (
-      <ErrorCard className="wrapper-container">
-        Category <span className="font-semibold">{category}</span> not found.
-      </ErrorCard>
-    );
+    return <NotFound message="Category not found" />;
   }
 
   if (error) {

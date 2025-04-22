@@ -13,7 +13,7 @@ const NotificationCard = () => {
           const { id, success, message } = notification;
           return (
             <div
-              className="w-full sm:animate-slideInFromRight animate-popUp transition-all shadow-2xs"
+              className="w-full sm:animate-slideInFromRight animate-popUp transition-all shadow-2xs sm:-right-full -bottom-full"
               role="alert"
               key={id}
             >
