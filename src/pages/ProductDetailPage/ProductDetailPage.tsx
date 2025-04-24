@@ -42,7 +42,7 @@ const ProductDetailPage = () => {
     });
     openCart();
   }
-  console.log("ProductDetailPage product: ", product);
+
   return (
     <>
       <SEO

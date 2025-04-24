@@ -77,7 +77,7 @@ const Attributes = ({
               key={item.id}
               data-testid={`product-attribute-${toKebabCase(
                 attribute.name
-              )}-${toKebabCase(item.value)}`}
+              )}-#${toKebabCase(item.value)}`}
               className={`size-8 cursor-pointer ${
                 isAttributeSelected(attribute, item)
                   ? "border-2 border-green-primary"
