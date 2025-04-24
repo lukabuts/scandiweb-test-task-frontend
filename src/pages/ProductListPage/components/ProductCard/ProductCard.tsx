@@ -15,7 +15,7 @@ const ProductCard = ({ product }: { product: Product }) => {
   const { addProduct } = useCartStore();
   const price = prices[0];
   const image = gallery[0];
-  const productImageRef = useRef<HTMLDivElement>(null);
+  const productImageRef = useRef<HTMLImageElement>(null);
 
   function handleAddToCart(e: React.MouseEvent) {
     e.preventDefault();
@@ -121,11 +121,9 @@ const ProductCard = ({ product }: { product: Product }) => {
       className="group flex flex-col gap-6 max-w-product-card w-full p-4 bg-white hover:shadow-md transition-shadow"
       data-testid={`product-${toKebabCase(name)}`}
     >
-      <div
-        ref={productImageRef}
-        className="relative flex items-center justify-center h-72"
-      >
+      <div className="relative flex items-center justify-center h-72">
         <img
+          ref={productImageRef}
           src={image}
           alt={name}
           loading="lazy"
@@ -134,7 +132,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         {in_stock ? (
           <button
             onClick={handleAddToCart}
-            className="bg-green-primary p-3 rounded-full absolute -bottom-6 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
+            className="bg-green-primary p-3 rounded-full absolute -bottom-6 right-4 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
           >
             <ShoppingCart className="text-white size-5" />
           </button>

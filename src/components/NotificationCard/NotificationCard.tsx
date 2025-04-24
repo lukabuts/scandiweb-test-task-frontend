@@ -1,7 +1,8 @@
 import { useMessageStore } from "@/stores";
+import { XIcon } from "lucide-react";
 
 const NotificationCard = () => {
-  const { notifications } = useMessageStore();
+  const { notifications, dismissMessage } = useMessageStore();
 
   if (!notifications || notifications.length === 0) return null;
 
@@ -24,11 +25,19 @@ const NotificationCard = () => {
                     : "bg-red-100 text-red-900"
                 } rounded px-4 py-3 relative shadow-md dark:shadow-gray-700 max-sm:shadow-none max-sm:w-11/12 max-sm:mx-auto overflow-hidden`}
               >
+                {/* Timeout */}
                 <div
                   className={`${
                     success ? "bg-teal-500" : "bg-red-500"
                   } absolute h-1 top-0 left-0 animate-widthnone`}
                 ></div>
+                {/* Delete Message */}
+                <div className="absolute top-2 right-2">
+                  <button onClick={() => dismissMessage(id)}>
+                    <XIcon className="size-5" />
+                  </button>
+                </div>
+                {/* Content */}
                 <div className="flex">
                   <div className="py-1">
                     <svg

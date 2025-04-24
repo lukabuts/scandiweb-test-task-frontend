@@ -6,9 +6,10 @@ function PlaceOrderButton({ cartItems }: { cartItems: CartProduct[] }) {
   const [placeOrder, { loading }] = useMutation(PLACE_ORDER_MUTATION);
   const { clearCart, closeCart } = useCartStore();
   const { showMessage, dismissMessage } = useMessageStore();
+  const isButtonDisabled = !cartItems.length || loading;
 
   const handlePlaceOrder = async () => {
-    if (!cartItems.length) return;
+    if (isButtonDisabled) return;
     try {
       const products = cartItems.map((item) => ({
         product_id: item.productId,
@@ -48,7 +49,7 @@ function PlaceOrderButton({ cartItems }: { cartItems: CartProduct[] }) {
     <button
       className="action-button p-3"
       onClick={handlePlaceOrder}
-      disabled={loading || !cartItems.length}
+      disabled={isButtonDisabled}
     >
       {loading ? "Placing Order..." : "Place Order"}
     </button>
