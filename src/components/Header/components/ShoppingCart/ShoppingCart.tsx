@@ -47,7 +47,10 @@ const ShoppingCart = () => {
         </button>
 
         {isCartOpen && (
-          <div className="absolute top-12 sm:top-13 right-0 w-80 py-8 px-4 bg-white space-y-8 text-black-primary">
+          <div
+            data-testid="cart-overlay"
+            className="absolute top-12 sm:top-13 right-0 w-80 py-8 px-4 bg-white space-y-8 text-black-primary"
+          >
             <h3>
               <span className="capitalize font-bold">my bag,</span>{" "}
               <span className="font-medium">

@@ -54,6 +54,9 @@ const Attributes = ({
           return attribute.type.name === "text" ? (
             <label
               key={item.id}
+              data-testid={`product-attribute-${toKebabCase(
+                attribute.name
+              )}-${toKebabCase(item.value)}`}
               className={`px-4 py-1 border-black-primary border font-sans primary-black-btn-hover cursor-pointer ${
                 isAttributeSelected(attribute, item)
                   ? "bg-black-primary text-white"
@@ -72,6 +75,9 @@ const Attributes = ({
           ) : (
             <label
               key={item.id}
+              data-testid={`product-attribute-${toKebabCase(
+                attribute.name
+              )}-${toKebabCase(item.value)}`}
               className={`size-8 cursor-pointer ${
                 isAttributeSelected(attribute, item)
                   ? "border-2 border-green-primary"
