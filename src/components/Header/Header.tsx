@@ -2,6 +2,8 @@ import logo from "@/assets/images/logo.png";
 import { useCategoryStore } from "@/stores";
 import { NavLinkCard, ShoppingCart } from "./components";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { routes } from "@/routes";
 
 const Header = () => {
   const { categories } = useCategoryStore();
@@ -31,7 +33,9 @@ const Header = () => {
           </ul>
         </nav>
         <div className="max-sm:hidden">
-          <img src={logo} alt="Logo" className="size-10" />
+          <Link to={routes.home}>
+            <img src={logo} alt="Logo" className="size-10" />
+          </Link>
         </div>
         <ShoppingCart />
       </div>

@@ -28,8 +28,12 @@ const ProductDetailPage = () => {
     return <ErrorCard className="wrapper-container">{error}</ErrorCard>;
   if (!product) return <NotFound message="Product not found" />;
 
+  const isButtonDisabled =
+    !product.in_stock ||
+    selectedAttributes.length !== product.attributes.length;
+
   function handleAddToCart() {
-    if (!product.in_stock) return;
+    if (isButtonDisabled) return;
 
     addProduct({
       id: generateCartProductId(product, selectedAttributes),
@@ -71,10 +75,7 @@ const ProductDetailPage = () => {
           <button
             data-testid="add-to-cart"
             className="action-button p-4"
-            disabled={
-              !product.in_stock ||
-              selectedAttributes.length !== product.attributes.length
-            }
+            disabled={isButtonDisabled}
             onClick={handleAddToCart}
           >
             {product.in_stock ? "Add to Cart" : "Out of Stock"}
