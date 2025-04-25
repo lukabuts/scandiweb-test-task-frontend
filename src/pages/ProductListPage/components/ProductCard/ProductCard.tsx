@@ -132,7 +132,7 @@ const ProductCard = ({ product }: { product: Product }) => {
         {in_stock ? (
           <button
             onClick={handleAddToCart}
-            className="bg-green-primary p-3 rounded-full absolute -bottom-6 right-4 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity"
+            className="bg-green-primary p-3 rounded-full absolute -bottom-6 right-4 opacity-0 group-hover:opacity-100 transition-opacity"
           >
             <ShoppingCart className="text-white size-5" />
           </button>
